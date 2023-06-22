@@ -17,6 +17,8 @@
     <!--Consider black and maroon aesthetic, research existing fitness apps-->
     <title>ManJuggs</title>
 </head>
+
+
 <body>
     
   <!--NAVIGATION MENU-->
@@ -30,7 +32,7 @@
           <button type="button" class="btn btn-light mx-2">BleepTest</button>
           <button type="button" class="btn btn-light mx-2">ShadBox</button>
           <button type="button" class="btn btn-light mx-2">GymSearch</button>
-          <button type="button" class="btn btn-light mx-2">YouTube</button>
+          <button type="button" class="btn youtube-btn btn-light mx-2">YouTube</button>
         </div>
       </nav>
 
@@ -44,6 +46,79 @@
         </div>
         <div class="modal-body">
           <p>This is the app for you if you want to polverise those pounds and fight that flab. The Stopwatch and Countdown features are just the beginning. For the ultimate <span class="beast-span">BEAST MODE</span>, give the Bleep test your absolute best. The YouTube and Gym Search features are also at your disposal. Use the navigation menu above to get started!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--YOUTUBE MODAL-->
+  <div class="modal mt-5" id="youtubeModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Search YouTube</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Select the muscle group you wish to focus on from the list below. Click on thumbnail or caption to visit desired channel.</p>
+
+          <hr>
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Select Muscle Group
+            </button>
+            <ul class="dropdown-menu youtube-dropdown">
+              <li><a class="dropdown-item yt-item" href="#">Neck</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Shoulder</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Back</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Chest</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Abs</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Biceps</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Triceps</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Forearm</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Glutes</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Upper leg</a></li>
+              <li><a class="dropdown-item yt-item" href="#">Lower leg</a></li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+
+              <div class="carousel-item yt-item active">
+                <a href="" target="_blank"><img src="images/bg-pexels-victor-freitas-949131.jpg" class="d-block w-100" alt="..."></a>
+                <a href="" target="_blank">
+                  <div class="carousel-caption d-md-block bg-primary">
+                    <h5></h5>
+                    <span class="yt-duration">Duration: </span>
+                    <br>
+                    <span class="yt-views">Views: </span>
+                    <br>
+                    <span class="yt-upload">Uploaded: </span>
+                  </div>
+                </a>
+              </div>
+
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -66,3 +141,7 @@
 
 </body>
 </html>
+
+<!--THINGS TO FIX...
+1. Welcome modal - needs to vanish when click outside - also needs to initiate overlay
+-->
