@@ -27,7 +27,7 @@
           <a class="navbar-brand" href="#">ManJuggs</a>
 
           <!--Use fontawesome icons in each button-->
-          <button type="button" class="btn btn-light mx-2">Stopwatch</button>
+          <button type="button" class="btn btn-light mx-2 stopwatch-btn">Stopwatch</button>
           <button type="button" class="btn btn-light mx-2">Countdown</button>
           <button type="button" class="btn btn-light mx-2">BleepTest</button>
           <button type="button" class="btn btn-light mx-2">ShadBox</button>
@@ -51,6 +51,49 @@
     </div>
   </div>
 
+  <!--STOPWATCH MODAL-->
+  <div class="modal mt-5" id="stopwatchModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Stopwatch</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="card mb-3">
+            <div class="card-header">
+              <p class="card-text">Hit the START button and excel yourself!</p>
+            </div>
+            <div class="card-body">
+              <div class="stopwatchDisplay">
+                
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary start-btn">Start</button>
+                <button type="button" class="btn btn-primary stop-btn">Stop</button>
+                <button type="button" class="btn btn-primary reset-btn">Reset</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
   <!--YOUTUBE MODAL-->
   <div class="modal mt-5" id="youtubeModal" tabindex="-1">
     <div class="modal-dialog">
@@ -69,54 +112,93 @@
               Select Muscle Group
             </button>
             <ul class="dropdown-menu youtube-dropdown">
-              <li><a class="dropdown-item yt-item" href="#">Neck</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Shoulder</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Back</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Chest</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Abs</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Biceps</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Triceps</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Forearm</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Glutes</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Upper leg</a></li>
-              <li><a class="dropdown-item yt-item" href="#">Lower leg</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Neck</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Shoulder</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Back</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Chest</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Abs</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Biceps</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Triceps</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Forearm</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Glutes</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Upper leg</a></li>
+              <li><a class="dropdown-item ytdd-item" href="#">Lower leg</a></li>
             </ul>
           </div>
 
           <hr>
 
-          <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-
-              <div class="carousel-item yt-item active">
-                <a href="" target="_blank"><img src="images/port1.png" class="d-block w-100" alt="..."></a>
-                <a href="" target="_blank">
-                  <div class="carousel-caption d-md-block bg-primary">
-                    <h5></h5>
-                    <span class="yt-duration">Duration: </span>
-                    <br>
-                    <span class="yt-views">Views: </span>
-                    <br>
-                    <span class="yt-upload">Uploaded: </span>
-                  </div>
-                </a>
+          <div class="container my-2">
+            <div id="carouselExampleCaptions" class="carousel slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="9" aria-label="Slide 10"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="10" aria-label="Slide 11"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="11" aria-label="Slide 12"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="12" aria-label="Slide 13"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="13" aria-label="Slide 14"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="14" aria-label="Slide 15"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="15" aria-label="Slide 16"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="16" aria-label="Slide 17"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="17" aria-label="Slide 18"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="18" aria-label="Slide 19"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="19" aria-label="Slide 20"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="20" aria-label="Slide 21"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="21" aria-label="Slide 22"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="22" aria-label="Slide 23"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="23" aria-label="Slide 24"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="24" aria-label="Slide 25"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="25" aria-label="Slide 26"></button>
+                <!--write js code to add these in instead-->
               </div>
 
-              
+              <div class="carousel-inner">
+                <div class="carousel-item yt-item active">
+                  <a href="" target="_blank"><img src="" class="d-block w-100" alt="..."></a>
+                  <a href="" target="_blank">
+                    <div class="carousel-caption d-md-block bg-primary">
+                      <h5></h5>
+                      <span class="yt-duration">Duration: </span>
+                      <br>
+                      <span class="yt-views">Views: </span>
+                      <br>
+                      <span class="yt-upload">Uploaded: </span>
+                    </div>
+                  </a>
+                </div>
+                
+                <div class="carousel-item yt-item">
+                  <a href="" target="_blank"><img src="" class="d-block w-100" alt="..."></a>
+                  <a href="" target="_blank">
+                    <div class="carousel-caption d-md-block bg-primary">
+                      <h5></h5>
+                      <span class="yt-duration">Duration: </span>
+                      <br>
+                      <span class="yt-views">Views: </span>
+                      <br>
+                      <span class="yt-upload">Uploaded: </span>
+                    </div>
+                  </a>
+                </div>
+            
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
 
         </div>
@@ -127,6 +209,10 @@
 
 
 <!--have a look at other fitness APIs and find best one-->
+
+
+    <!--jQUERY-->
+    <script src="jquery.js"></script>
 
 
     <!--BOOTSTRAP JS-->
