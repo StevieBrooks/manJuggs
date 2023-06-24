@@ -24,29 +24,29 @@ let mils = 0;
 
     $(".stopwatchDisplay").html("00 : 00 : 00");
     $(".start-btn").click(function() {
+            
         setInterval(function() {
             mils += 1;
-            $(".stopwatchDisplay").html(`00 : 00 : 0${mils}`);
-            if(mils > 9) {
-                $(".stopwatchDisplay").html(`00 : 00 : ${mils - 1}`);
-            }
-            if(mils == 60) {
+
+            if (mils == 100) {
                 mils = 0;
                 seconds += 1;
             }
-            $(".stopwatchDisplay").html(`00 : 0${seconds} : 0${mils}`);
-            if(seconds == 10) {
+    
+            if (seconds == 60) {
                 seconds = 0;
                 minutes += 1;
             }
-            $(".stopwatchDisplay").html(`0${minutes} : 0${seconds} : 0${mils}`);
-            if(minutes >= 10) {
-                $(".stopwatchDisplay").html(`${minutes} : 0${seconds} : 0${mils}`);
-            }
-        }, 1000)
+    
+            const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+            const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+            const displayMils = mils < 10 ? `0${mils}` : mils;
+    
+            $(".stopwatchDisplay").html(`${displayMinutes} : ${displaySeconds} : ${displayMils}`);
+        
+        }, 0010)
 
     })
-
 
 
 /*YOUTUBE SECTION*/
