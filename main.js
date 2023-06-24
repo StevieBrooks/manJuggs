@@ -1,31 +1,63 @@
-let modal = document.querySelector(".modal");
-let welcomeModal = document.querySelector("#welcomeModal");
-let box = document.querySelector(".box");
-let modalClose = document.querySelector(".btn-close");
+
 
 window.addEventListener("load", () => {
 
-    setTimeout(function() {
-        welcomeModal.style.display = "block";
-    }, 2000)
+    // setTimeout(function() {
+    //     $("#welcomeModal").modal("show");
+    // }, 2000)
+
+    $("#stopwatchModal").modal("show");
+
 
 })
 
-modalClose.addEventListener("click", () => {
-    modal.style.display = "none";
-})
+
+/* STOPWATCH SECTION */
+
+let minutes = 0;
+let seconds = 0;
+let mils = 0;
+
+    $(".stopwatch-btn").click(function() {
+        $("#stopwatchModal").modal("show");
+    })
+
+    $(".stopwatchDisplay").html("00 : 00 : 00");
+    $(".start-btn").click(function() {
+        setInterval(function() {
+            mils += 1;
+            $(".stopwatchDisplay").html(`00 : 00 : 0${mils}`);
+            if(mils > 9) {
+                $(".stopwatchDisplay").html(`00 : 00 : ${mils - 1}`);
+            }
+            if(mils == 60) {
+                mils = 0;
+                seconds += 1;
+            }
+            $(".stopwatchDisplay").html(`00 : 0${seconds} : 0${mils}`);
+            if(seconds == 10) {
+                seconds = 0;
+                minutes += 1;
+            }
+            $(".stopwatchDisplay").html(`0${minutes} : 0${seconds} : 0${mils}`);
+            if(minutes >= 10) {
+                $(".stopwatchDisplay").html(`${minutes} : 0${seconds} : 0${mils}`);
+            }
+        }, 1000)
+
+    })
+
 
 
 /*YOUTUBE SECTION*/
 const youtubeBtn = document.querySelector(".youtube-btn");
 const youtubeModal = document.querySelector("#youtubeModal");
-const muscleArray = document.querySelectorAll(".yt-item");
+const muscleArray = document.querySelectorAll(".ytdd-item");
 let muscleChoice = null;
 let carouselInner = document.querySelector(".carousel-inner");
-const ytItem = document.querySelector(".yt-item");
-let carouselArr = Array.from(carouselInner);
-carouselArr.push(ytItem);
-console.log(carouselArr);
+let ytItem = null; 
+let carouselArr = [];
+
 
 
 youtubeBtn.addEventListener("click", () => {
@@ -47,22 +79,39 @@ youtubeBtn.addEventListener("click", () => {
                         console.log("Apologies, no data right now.")
                     } else {                     
                         res.items.forEach(item => {
-                            // carouselInner.innerHTML += ytItem;
-                            carouselArr.push(ytItem);
-                            console.log(carouselArr.length);
-                            
-                            
-                            // ytItem.children[0].children[0].src = item.thumbnails[0].url;
-                            // Object.keys(item).forEach(key => {
+                            carouselArr.push(item);
+                        })
+                    }
+
+                    console.log(carouselArr);
+
+                    carouselArr.forEach(item => {
+                        if(item.type == 'video') {
+
+                            ytItem = document.querySelector(".yt-item:nth-child(2)");
+                            const cloneItem = ytItem.cloneNode(true);
+                            carouselInner.appendChild(cloneItem);
+
+                            cloneItem.children[0].href = item.url;
+                            cloneItem.children[0].children[0].src = item.thumbnails[0].url;
+                            cloneItem.children[1].href = item.url;
+                            cloneItem.children[1].children[0].children[1].innerHTML += item.duration;
+                            cloneItem.children[1].children[0].children[3].innerHTML += item.views;
+                            cloneItem.children[1].children[0].children[5].innerHTML += item.uploadedAt;
+
+
+
+                                                        // Object.keys(item).forEach(key => {
                             //     if(key == "thumbnails") {
                             //         console.log("you can use this item");
                             //     }
                             // })
     
-                            /*may need for if statement edge cases (if(Objext contains thumbnail, etc) - https://masteringjs.io/tutorials/fundamentals/foreach-object */
-                        })
-                    }
-                    console.log(carouselArr);
+
+                        }
+                    })
+                    console.log(carouselInner.children);
+
                 }
             });
         
