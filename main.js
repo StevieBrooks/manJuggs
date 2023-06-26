@@ -17,15 +17,37 @@ window.addEventListener("load", () => {
 let minutes = 0;
 let seconds = 0;
 let mils = 0;
+let displayMinutes = null;
+let displaySeconds = null;
+let displayMils = null;
+let startInt = null;
+let flag = null;
+const startBtn = $(".start-btn");
 
     $(".stopwatch-btn").click(function() {
         $("#stopwatchModal").modal("show");
+        flag = true;
     })
 
-    $(".stopwatchDisplay").html("00 : 00 : 00");
-    $(".start-btn").click(function() {
+    $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
+    startBtn.click(function() {
+
+        if(flag) {
+            function1();
+        } else {
+            function2();
+        }
+        flag = !flag;
+        
+    })
+
+    function function1() {
+
+        console.log('function1');
+        
+        startBtn.text("Pause");
             
-        setInterval(function() {
+        startInt = setInterval(function() {
             mils += 1;
 
             if (mils == 100) {
@@ -38,15 +60,44 @@ let mils = 0;
                 minutes += 1;
             }
     
-            const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
-            const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
-            const displayMils = mils < 10 ? `0${mils}` : mils;
+            displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+            displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+            displayMils = mils < 10 ? `0${mils}` : mils;
     
-            $(".stopwatchDisplay").html(`${displayMinutes} : ${displaySeconds} : ${displayMils}`);
+            $(".stopwatchDisplay").html(`${displayMinutes} m : ${displaySeconds} s : ${displayMils} ms`);
         
         }, 0010)
+    }
 
+    function function2() {
+        console.log('function2');
+        startBtn.text("Start");
+        clearInterval(startInt);
+    }
+    
+    $(".stop-btn").click(function() {
+        clearInterval(startInt);
+        flag = flag;
+        startBtn.text("Start");
+        mils = 0;
+        seconds = 0;
+        minutes = 0;
     })
+
+    $(".reset-btn").click(function() {
+        clearInterval(startInt);
+        flag = flag;
+        startBtn.text("Start");
+        mils = 0;
+        seconds = 0;
+        minutes = 0;
+        $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
+    })
+/* 2 issues - clock slightly too fast
+            - if stop or reset is clicked without pausing first, function 2 is triggered first when reclicking start button.
+     */
+
+
 
 
 /*YOUTUBE SECTION*/
