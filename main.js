@@ -2,11 +2,11 @@
 
 window.addEventListener("load", () => {
 
-    // setTimeout(function() {
-    //     $("#welcomeModal").modal("show");
-    // }, 2000)
+    setTimeout(function() {
+        $("#welcomeModal").modal("show");
+    }, 2000)
 
-    $("#stopwatchModal").modal("show");
+    // $("#stopwatchModal").modal("show");
 
 
 })
@@ -33,15 +33,15 @@ const startBtn = $(".start-btn");
     startBtn.click(function() {
 
         if(flag) {
-            function1();
+            startFunc1();
         } else {
-            function2();
+            startFunc2();
         }
         flag = !flag;
         
     })
 
-    function function1() {
+    function startFunc1() {
 
         console.log('function1');
         
@@ -66,18 +66,19 @@ const startBtn = $(".start-btn");
     
             $(".stopwatchDisplay").html(`${displayMinutes} m : ${displaySeconds} s : ${displayMils} ms`);
         
-        }, 0010)
+        }, 10)
     }
 
-    function function2() {
+    function startFunc2() {
         console.log('function2');
         startBtn.text("Start");
         clearInterval(startInt);
     }
     
     $(".stop-btn").click(function() {
+        if(startBtn.text("Pause")) 
         clearInterval(startInt);
-        flag = flag;
+        flag = true;
         startBtn.text("Start");
         mils = 0;
         seconds = 0;
@@ -86,18 +87,23 @@ const startBtn = $(".start-btn");
 
     $(".reset-btn").click(function() {
         clearInterval(startInt);
-        flag = flag;
+        flag = true;
         startBtn.text("Start");
         mils = 0;
         seconds = 0;
         minutes = 0;
         $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
     })
-/* 2 issues - clock slightly too fast
-            - if stop or reset is clicked without pausing first, function 2 is triggered first when reclicking start button.
-     */
 
-
+    $("#stopwatchModal").on("hidden.bs.modal", function() {
+        clearInterval(startInt); // Clear the interval when the modal is closed
+        flag = true;
+        startBtn.text("Start");
+        mils = 0;
+        seconds = 0;
+        minutes = 0;
+        $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
+      });
 
 
 /*YOUTUBE SECTION*/
