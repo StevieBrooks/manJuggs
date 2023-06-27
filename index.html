@@ -28,7 +28,7 @@
 
           <!--Use fontawesome icons in each button-->
           <button type="button" class="btn btn-light mx-2 stopwatch-btn">Stopwatch</button>
-          <button type="button" class="btn btn-light mx-2">Countdown</button>
+          <button type="button" class="btn btn-light mx-2 countdown-btn">Countdown</button>
           <button type="button" class="btn btn-light mx-2">BleepTest</button>
           <button type="button" class="btn btn-light mx-2">ShadBox</button>
           <button type="button" class="btn btn-light mx-2">GymSearch</button>
@@ -50,6 +50,7 @@
       </div>
     </div>
   </div>
+
 
   <!--STOPWATCH MODAL-->
   <div class="modal mt-5" id="stopwatchModal" tabindex="-1">
@@ -75,6 +76,43 @@
                 <button type="button" class="btn btn-primary start-btn">Start</button>
                 <button type="button" class="btn btn-primary stop-btn">Stop</button>
                 <button type="button" class="btn btn-primary reset-btn">Reset</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--COUNTDOWN MODAL-->
+  <div class="modal mt-5" id="countdownModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Countdown Timer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="card mb-3">
+            <div class="card-header">
+              <p class="card-text">Choose your interval and cram as MUCH in as possible. You can do it!</p>
+            </div>
+            <div class="card-body">
+              <div class="countdown-display"></div>
+              <div class="countdown-set">
+                <h6>Set Countdown</h6>
+                <label for="hours">Hours: <input type="number" class="cd-hours"></label>
+                <label for="minutes">Minutes: <input type="number" class="cd-minutes"></label>
+                <label for="seconds">Seconds: <input type="number" class="cd-seconds"></label>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary cd-start-btn">Start</button>
+                <button type="button" class="btn btn-primary cd-reset-btn">Reset</button>
               </div>
             </div>
           </div>
