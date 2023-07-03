@@ -1,4 +1,52 @@
 body {
     background: url("images/bg-pexels-victor-freitas-949131.jpg");
     background-size: cover;
+    /*need media query for background*/
+}
+
+
+.nav-btn {
+    background-color: #38040E;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+} 
+
+.nav-btn:hover {
+    background-color: #800E13;
+    color: antiquewhite;
+} 
+
+.modal-content {
+    background-color: #38040E;
+    color: antiquewhite;
+    border: none;
+    box-shadow: 0 0 3px antiquewhite;
+    position: relative;
+    top: 2rem;
+}
+
+.card {
+    background-color: #250902;
+    color: antiquewhite;
+    border: none;
+    box-shadow: 0 0 3px antiquewhite;
+}
+
+.modal-header {
+    background-color: #250902;
+    color: antiquewhite;
+    border: none;
+    box-shadow: 0 0 2px antiquewhite;
+}
+
+.btn {
+    background-color: #38040E;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+}
+
+.btn:hover {
+    background-color: #800E13;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
 }
