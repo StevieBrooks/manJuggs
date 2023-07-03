@@ -2,14 +2,101 @@
 
 window.addEventListener("load", () => {
 
-    setTimeout(function() {
-        $("#welcomeModal").modal("show");
-    }, 2000)
+    // setTimeout(function() {
+    //     $("#welcomeModal").modal("show");
+    // }, 2000)
 
     // $("#stopwatchModal").modal("show");
+    $("#countdownModal").modal("show");
 
 
 })
+
+
+/* COUNTDOWN SECTION */
+
+let cdDisplayHours = null;
+let cdDisplayMinutes = null;
+let cdDisplaySeconds = null;
+let cdStartInt = null;
+let cdFlag = null;
+const cdStartBtn = $(".cd-start-btn");
+const cdDisplay = $(".countdown-display");
+cdDisplay.html("00 : 00 : 00");
+let cdHours = $(".cd-hours");
+let cdMinutes = $(".cd-minutes");
+let cdSeconds = $(".cd-seconds");
+let currentDate = new Date();
+
+$(".countdown-btn").click(function() {
+        $("#countdownModal").modal("show");
+        flag = true;
+    })
+
+function validateHours(cdHours) {
+    return cdHours.val().length > 2 ? $(".hourMessage").text("Enter number from 0 - 99") : $(".hourMessage").text("");
+}
+
+function validateMinutes(cdMinutes) {
+    return cdMinutes.val().length > 2 || cdMinutes.val() > 59 ? $(".minuteMessage").text("Enter number from 0 - 59") : $(".minuteMessage").text("");
+}
+
+function validateSeconds(cdSeconds) {
+    return cdSeconds.val().length > 2 || cdSeconds.val() > 59 ? $(".secondMessage").text("Enter number from 0 - 59") : $(".secondMessage").text("");
+}
+
+function calibrateClock() {
+    
+    cdDisplayHours = cdHours.val().length == 2 ? cdHours.val() : cdHours.val().length == 1 ? `0${cdHours.val()}` : "00";
+
+    cdDisplayMinutes = cdMinutes.val().length == 2 ? cdMinutes.val() : cdMinutes.val().length == 1 ? `0${cdMinutes.val()}` : "00";
+
+    cdDisplaySeconds = cdSeconds.val().length == 2 ? cdSeconds.val() : cdSeconds.val().length == 1 ? `0${cdSeconds.val()}` : "00";
+
+    if(cdDisplayHours < 100 && cdDisplayMinutes < 60 && cdDisplaySeconds < 60) {
+        cdDisplay.html(`${cdDisplayHours} : ${cdDisplayMinutes} : ${cdDisplaySeconds}`);
+    } else {
+        cdDisplay.html("00 : 00 : 00");
+    }
+
+}
+
+
+cdStartBtn.click(function() {
+    validateHours(cdHours);
+    validateMinutes(cdMinutes);
+    validateSeconds(cdSeconds);
+    calibrateClock();
+
+    let totalSeconds =
+    parseInt(cdDisplayHours) * 3600 +
+    parseInt(cdDisplayMinutes) * 60 +
+    parseInt(cdDisplaySeconds);
+
+  cdStartInt = setInterval(function () {
+    totalSeconds--;
+
+    if (totalSeconds < 0) {
+      clearInterval(cdStartInt);
+      cdDisplay.html("00 : 00 : 00");
+      return;
+    }
+
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    const displayHours = hours.toString().padStart(2, "0");
+    const displayMinutes = minutes.toString().padStart(2, "0");
+    const displaySeconds = seconds.toString().padStart(2, "0");
+
+    cdDisplay.html(`${displayHours} : ${displayMinutes} : ${displaySeconds}`);
+  }, 1);
+})
+
+/* Add motivational message box underneath. Use for intervals of 5 minutes and 15 second intervals for last 90secs */
+
+
 
 
 /* STOPWATCH SECTION */
@@ -24,86 +111,86 @@ let startInt = null;
 let flag = null;
 const startBtn = $(".start-btn");
 
-    $(".stopwatch-btn").click(function() {
-        $("#stopwatchModal").modal("show");
-        flag = true;
-    })
+$(".stopwatch-btn").click(function() {
+    $("#stopwatchModal").modal("show");
+    flag = true;
+})
 
-    $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
-    startBtn.click(function() {
+$(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
+startBtn.click(function() {
 
-        if(flag) {
-            startFunc1();
-        } else {
-            startFunc2();
+    if(flag) {
+        startFunc1();
+    } else {
+        startFunc2();
+    }
+    flag = !flag;
+    
+})
+
+function startFunc1() {
+
+    console.log('function1');
+    
+    startBtn.text("Pause");
+        
+    startInt = setInterval(function() {
+        mils += 1;
+
+        if (mils == 100) {
+            mils = 0;
+            seconds += 1;
         }
-        flag = !flag;
-        
-    })
 
-    function startFunc1() {
+        if (seconds == 60) {
+            seconds = 0;
+            minutes += 1;
+        }
 
-        console.log('function1');
-        
-        startBtn.text("Pause");
-            
-        startInt = setInterval(function() {
-            mils += 1;
+        displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+        displayMils = mils < 10 ? `0${mils}` : mils;
 
-            if (mils == 100) {
-                mils = 0;
-                seconds += 1;
-            }
+        $(".stopwatchDisplay").html(`${displayMinutes} m : ${displaySeconds} s : ${displayMils} ms`);
     
-            if (seconds == 60) {
-                seconds = 0;
-                minutes += 1;
-            }
-    
-            displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
-            displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
-            displayMils = mils < 10 ? `0${mils}` : mils;
-    
-            $(".stopwatchDisplay").html(`${displayMinutes} m : ${displaySeconds} s : ${displayMils} ms`);
-        
-        }, 10)
-    }
+    }, 10)
+}
 
-    function startFunc2() {
-        console.log('function2');
-        startBtn.text("Start");
-        clearInterval(startInt);
-    }
-    
-    $(".stop-btn").click(function() {
-        if(startBtn.text("Pause")) 
-        clearInterval(startInt);
-        flag = true;
-        startBtn.text("Start");
-        mils = 0;
-        seconds = 0;
-        minutes = 0;
-    })
+function startFunc2() {
+    console.log('function2');
+    startBtn.text("Start");
+    clearInterval(startInt);
+}
 
-    $(".reset-btn").click(function() {
-        clearInterval(startInt);
-        flag = true;
-        startBtn.text("Start");
-        mils = 0;
-        seconds = 0;
-        minutes = 0;
-        $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
-    })
+$(".stop-btn").click(function() {
+    if(startBtn.text("Pause")) 
+    clearInterval(startInt);
+    flag = true;
+    startBtn.text("Start");
+    mils = 0;
+    seconds = 0;
+    minutes = 0;
+})
 
-    $("#stopwatchModal").on("hidden.bs.modal", function() {
-        clearInterval(startInt); // Clear the interval when the modal is closed
-        flag = true;
-        startBtn.text("Start");
-        mils = 0;
-        seconds = 0;
-        minutes = 0;
-        $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
-      });
+$(".reset-btn").click(function() {
+    clearInterval(startInt);
+    flag = true;
+    startBtn.text("Start");
+    mils = 0;
+    seconds = 0;
+    minutes = 0;
+    $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
+})
+
+$("#stopwatchModal").on("hidden.bs.modal", function() {
+    clearInterval(startInt); 
+    flag = true;
+    startBtn.text("Start");
+    mils = 0;
+    seconds = 0;
+    minutes = 0;
+    $(".stopwatchDisplay").html("00 m : 00 s : 00 ms");
+    });
 
 
 /*YOUTUBE SECTION*/

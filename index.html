@@ -22,17 +22,18 @@
 <body>
     
   <!--NAVIGATION MENU-->
-    <nav class="navbar navbar-expand-lg bg-primary">
+    <nav class="navbar navbar-expand-lg" style="background-color: #250902;">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">ManJuggs</a>
 
           <!--Use fontawesome icons in each button-->
-          <button type="button" class="btn btn-light mx-2 stopwatch-btn">Stopwatch</button>
-          <button type="button" class="btn btn-light mx-2 countdown-btn">Countdown</button>
-          <button type="button" class="btn btn-light mx-2">BleepTest</button>
-          <button type="button" class="btn btn-light mx-2">ShadBox</button>
-          <button type="button" class="btn btn-light mx-2">GymSearch</button>
-          <button type="button" class="btn youtube-btn btn-light mx-2">YouTube</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn stopwatch-btn">Stopwatch</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn countdown-btn">Countdown</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn todo-btn">To-Do</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn">BleepTest</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn">ShadBox</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn">GymSearch</button>
+          <button type="button" class="btn youtube-btn btn-light mx-2 nav-btn">YouTube</button>
         </div>
       </nav>
 
@@ -73,9 +74,9 @@
             </div>
             <div class="card-footer">
               <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary start-btn">Start</button>
-                <button type="button" class="btn btn-primary stop-btn">Stop</button>
-                <button type="button" class="btn btn-primary reset-btn">Reset</button>
+                <button type="button" class="btn start-btn">Start</button>
+                <button type="button" class="btn stop-btn">Stop</button>
+                <button type="button" class="btn reset-btn">Reset</button>
               </div>
             </div>
           </div>
@@ -105,8 +106,11 @@
               <div class="countdown-set">
                 <h6>Set Countdown</h6>
                 <label for="hours">Hours: <input type="number" class="cd-hours"></label>
+                <span class="hourMessage"></span>
                 <label for="minutes">Minutes: <input type="number" class="cd-minutes"></label>
+                <span class="minuteMessage"></span>
                 <label for="seconds">Seconds: <input type="number" class="cd-seconds"></label>
+                <span class="secondMessage"></span>
               </div>
             </div>
             <div class="card-footer">
