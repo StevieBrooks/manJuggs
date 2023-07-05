@@ -7,208 +7,75 @@ window.addEventListener("load", () => {
     // }, 2000)
 
     // $("#stopwatchModal").modal("show");
-    $("#countdownModal").modal("show");
+    // $("#countdownModal").modal("show");
+    $("#todoModal").modal("show");
 
 
 })
 
+/* TO-DO SECTION */
 
-/* COUNTDOWN SECTION */
+$(".todo-btn").click(function() {
+    $("#todoModal").modal("show");
+})
 
-let cdDisplayHours = null;
-let cdDisplayMinutes = null;
-let cdDisplaySeconds = null;
-let cdStartInt = null;
-const cdStartBtn = $(".cd-start-btn");
-const cdResetBtn = $(".cd-reset-btn");
-const cdDisplay = $(".countdown-display");
-cdDisplay.html("00 : 00 : 00");
-let cdHours = $(".cd-hours");
-let cdMinutes = $(".cd-minutes");
-let cdSeconds = $(".cd-seconds");
-let totalSeconds = null;
-let hourFail = null;
-let minFail = null;
-let secFail = null;
-let onStandby = null;
+const todoInput = $(".todo-input");
+const todoButton = $(".todo-button");
+const tdModalBody = $(".td-modal-body");
+const tdCard = $(".td-card");
 
-$(".countdown-btn").click(function() {
-        $("#countdownModal").modal("show");
-        onStandby = true;
-    })
+todoButton.click(function() {
+    tdModalBody.append(`
+    <div class="card td-card my-2">
+    <div class="card-body py-1">
+      <div class="row">
+        <div class="col col-8">
+          <p class="mb-0">${todoInput.val()}</p>
+        </div>
+        <div class="col col-4">
+          <button class="td-done">Done</button>
+          <button class="td-delete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    `);
+    todoInput.val("");
+})
 
-function validateHoursField() {
-    if(!validateHours(cdHours)) {
-        $(".hourMessage").text("Enter number from 0 - 99");
-        cdHours.css("box-shadow", "0 0 3px red");
-        cdHours.val("");
-        hourFail = true;
-    } else {
-        $(".hourMessage").text("");
-        hourFail = false;
+$("#todoModal").on("keydown", function(e) {
+    if(e.originalEvent.keyCode == 13 && todoInput.val().length > 0) {
+        tdModalBody.append(`
+    <div class="card td-card my-2">
+        <div class="card-body py-1">
+            <div class="row">
+                <div class="col col-8">
+                    <p class="mb-0">${todoInput.val()}</p>
+                </div>
+                <div class="col col-4">
+                    <button class="td-done">Done</button>
+                    <button class="td-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `);
+    todoInput.val("");
     }
-}
+    console.log(e.originalEvent.keyCode);
+})
 
-function validateHours(cdHours) {
-    return cdHours.val() < 100;
-}
-
-function validateMinutesField() {
-    if(!validateMinutes(cdMinutes)) {
-        $(".minuteMessage").text("Enter number from 0 - 59");
-        cdMinutes.css("box-shadow", "0 0 3px red");
-        cdMinutes.val("");
-        minFail = true;
-    } else {
-        $(".minuteMessage").text("");
-        minFail = false;
-    }
-
-}
-function validateMinutes(cdMinutes) {
-    return cdMinutes.val().length < 2 || cdMinutes.val() < 60;
-}
-
-function validateSecondsField() {
-    if(!validateSeconds(cdSeconds)) {
-        $(".secondMessage").text("Enter number from 0 - 59");
-        cdSeconds.css("box-shadow", "0 0 3px red");
-        cdSeconds.val("");
-        secFail = true;
-    } else {
-        $(".secondMessage").text("");
-        secFail = false;
-    }
-
-function validateSeconds(cdSeconds) {
-    return cdSeconds.val().length < 2 || cdSeconds.val() < 60;
-}
-}
-
-function calibrateClock() {
+tdModalBody.on("click", ".td-done", function(e) {
+    console.log(e.target.parentElement.previousElementSibling.children[0]);
+    const task = e.target.parentElement.previousElementSibling.children[0];
     
-    cdDisplayHours = cdHours.val().length == 2 ? cdHours.val() : cdHours.val().length == 1 ? `0${cdHours.val()}` : "00";
-
-    cdDisplayMinutes = cdMinutes.val().length == 2 ? cdMinutes.val() : cdMinutes.val().length == 1 ? `0${cdMinutes.val()}` : "00";
-
-    cdDisplaySeconds = cdSeconds.val().length == 2 ? cdSeconds.val() : cdSeconds.val().length == 1 ? `0${cdSeconds.val()}` : "00";
-
-    // if(cdHours.val() < 100 && cdMinutes.val() < 60 && cdSeconds.val() < 60) {
-    //     cdDisplay.html(`${cdDisplayHours} : ${cdDisplayMinutes} : ${cdDisplaySeconds}`);
-    // } else {
-    //     cdDisplay.html("00 : 00 : 00");
-    // }
-
-}
-
-
-cdStartBtn.click(function() {
-
-    if(onStandby) {
-        timerFunc1();
-    } else {
-        timerFunc2();
-    }
-
-    onStandby = !onStandby;
-
-    
-
-    function timerFunc1() {
-
-        validateHoursField();
-        validateMinutesField();
-        validateSecondsField();
-        calibrateClock();
-
-            /*Come back later and build in pause function*/
-
-        if(!hourFail && !minFail && !secFail) {
-            totalSeconds =
-            parseInt(cdDisplayHours) * 3600 +
-            parseInt(cdDisplayMinutes) * 60 +
-            parseInt(cdDisplaySeconds);
-
-            cdStartBtn.text("Stop");
-        
-          cdStartInt = setInterval(function () {
-        
-            totalSeconds--;
-        
-            if (totalSeconds < 0) {
-              clearInterval(cdStartInt);
-              cdDisplay.html("00 : 00 : 00");
-              cdStartBtn.text("Start");
-              onStandby = true;
-              return;
-            }
-        
-            const hours = Math.floor(totalSeconds / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
-        
-            const displayHours = hours.toString().padStart(2, "0");
-            const displayMinutes = minutes.toString().padStart(2, "0");
-            const displaySeconds = seconds.toString().padStart(2, "0");
-        
-            cdDisplay.html(`${displayHours} : ${displayMinutes} : ${displaySeconds}`);
-        
-          }, 1000);
-
-          setTimeout(function() {
-            cdHours.val("");
-            cdMinutes.val("");
-            cdSeconds.val("");
-          }, 2000)
-
-        }
-    }
-
-    function timerFunc2() {
-        clearInterval(cdStartInt);
-        onStandby = true;
-    }
+    task.classList.toggle("task-done");
 })
 
-cdResetBtn.click(function() {
-    cdDisplay.html("00 : 00 : 00");
-    clearInterval(cdStartInt);
-    cdHours.val("");
-    cdMinutes.val("");
-    cdSeconds.val("");
-    onStandby = true;
-    cdStartBtn.text("Start");
-    $(".hourMessage").text("");
-    $(".minuteMessage").text("");
-    $(".secondMessage").text("");
+tdModalBody.on("click", ".td-delete", function(e) {
+    // console.log(e.target.parentElement);
+    e.target.parentElement.parentElement.parentElement.remove();
 })
-
-$("#countdownModal").on("hidden.bs.modal", function() {
-    clearInterval(cdStartInt); 
-    onStandby = false;
-    cdStartBtn.text("Start");
-    cdDisplay.html("00 : 00 : 00");
-    $(".hourMessage").text("");
-    $(".minuteMessage").text("");
-    $(".secondMessage").text("");
-    cdHours.val("");
-    cdMinutes.val("");
-    cdSeconds.val("");
-    });
-
-
-/*Here are the changes made to the code:
-
-Added a totalSeconds variable to keep track of the remaining time in seconds.
-Converted the hours, minutes, and seconds inputs to integers and calculated the total number of seconds.
-Decremented totalSeconds inside the setInterval function.
-Added a check to see if totalSeconds is less than 0, which means the countdown has ended. In that case, clear the interval, reset the display, and return.
-Calculate the hours, minutes, and seconds from the remaining totalSeconds value.
-Padded the hours, minutes, and seconds with leading zeros using the padStart method to ensure they have two digits.
-Updated the cdDisplay HTML to show the updated countdown time. */
-
-/* Add motivational message box underneath. Use for intervals of 5 minutes and 15 second intervals for last 90secs */
-
 
 
 
@@ -306,6 +173,192 @@ $("#stopwatchModal").on("hidden.bs.modal", function() {
     });
 
 
+/* COUNTDOWN SECTION */
+
+let cdDisplayHours = null;
+let cdDisplayMinutes = null;
+let cdDisplaySeconds = null;
+let cdStartInt = null;
+const cdStartBtn = $(".cd-start-btn");
+const cdResetBtn = $(".cd-reset-btn");
+const cdDisplay = $(".countdown-display");
+cdDisplay.html("00 : 00 : 00");
+let cdHours = $(".cd-hours");
+let cdMinutes = $(".cd-minutes");
+let cdSeconds = $(".cd-seconds");
+let totalSeconds = null;
+let hourFail = null;
+let minFail = null;
+let secFail = null;
+let onStandby = null;
+
+$(".countdown-btn").click(function() {
+        $("#countdownModal").modal("show");
+        onStandby = true;
+    })
+
+function validateHoursField() {
+    if(!validateHours(cdHours)) {
+        $(".hourMessage").text("Enter number from 0 - 99");
+        cdHours.css("box-shadow", "0 0 3px red");
+        cdHours.val("");
+        hourFail = true;
+    } else {
+        $(".hourMessage").text("");
+        hourFail = false;
+    }
+}
+
+function validateHours(cdHours) {
+    return cdHours.val() < 100;
+}
+
+function validateMinutesField() {
+    if(!validateMinutes(cdMinutes)) {
+        $(".minuteMessage").text("Enter number from 0 - 59");
+        cdMinutes.css("box-shadow", "0 0 3px red");
+        cdMinutes.val("");
+        minFail = true;
+    } else {
+        $(".minuteMessage").text("");
+        minFail = false;
+    }
+
+}
+function validateMinutes(cdMinutes) {
+    return cdMinutes.val().length < 2 || cdMinutes.val() < 60;
+}
+
+function validateSecondsField() {
+    if(!validateSeconds(cdSeconds)) {
+        $(".secondMessage").text("Enter number from 0 - 59");
+        cdSeconds.css("box-shadow", "0 0 3px red");
+        cdSeconds.val("");
+        secFail = true;
+    } else {
+        $(".secondMessage").text("");
+        secFail = false;
+    }
+
+function validateSeconds(cdSeconds) {
+    return cdSeconds.val().length < 2 || cdSeconds.val() < 60;
+}
+}
+
+function calibrateClock() {
+    
+    cdDisplayHours = cdHours.val().length == 2 ? cdHours.val() : cdHours.val().length == 1 ? `0${cdHours.val()}` : "00";
+
+    cdDisplayMinutes = cdMinutes.val().length == 2 ? cdMinutes.val() : cdMinutes.val().length == 1 ? `0${cdMinutes.val()}` : "00";
+
+    cdDisplaySeconds = cdSeconds.val().length == 2 ? cdSeconds.val() : cdSeconds.val().length == 1 ? `0${cdSeconds.val()}` : "00";
+
+}
+
+
+cdStartBtn.click(function() {
+
+    if(onStandby) {
+        timerFunc1();
+    } else {
+        timerFunc2();
+    }
+
+    onStandby = !onStandby;
+
+    
+
+    function timerFunc1() {
+
+        validateHoursField();
+        validateMinutesField();
+        validateSecondsField();
+        calibrateClock();
+
+        if(!hourFail && !minFail && !secFail) {
+            totalSeconds =
+            parseInt(cdDisplayHours) * 3600 +
+            parseInt(cdDisplayMinutes) * 60 +
+            parseInt(cdDisplaySeconds);
+
+            cdStartBtn.text("Stop");
+        
+          cdStartInt = setInterval(function () {
+        
+            totalSeconds--;
+        
+            if (totalSeconds < 0) {
+              clearInterval(cdStartInt);
+              cdDisplay.html("00 : 00 : 00");
+              cdStartBtn.text("Start");
+              onStandby = true;
+              return;
+            }
+        
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+        
+            const displayHours = hours.toString().padStart(2, "0");
+            const displayMinutes = minutes.toString().padStart(2, "0");
+            const displaySeconds = seconds.toString().padStart(2, "0");
+        
+            cdDisplay.html(`${displayHours} : ${displayMinutes} : ${displaySeconds}`);
+        
+          }, 1000);
+
+          setTimeout(function() {
+            cdHours.val("");
+            cdMinutes.val("");
+            cdSeconds.val("");
+          }, 2000)
+
+        }
+    }
+
+    function timerFunc2() {
+        clearInterval(cdStartInt);
+        onStandby = true;
+    }
+})
+
+cdResetBtn.click(function() {
+    cdDisplay.html("00 : 00 : 00");
+    clearInterval(cdStartInt);
+    cdHours.val("");
+    cdMinutes.val("");
+    cdSeconds.val("");
+    onStandby = true;
+    cdStartBtn.text("Start");
+    $(".hourMessage").text("");
+    $(".minuteMessage").text("");
+    $(".secondMessage").text("");
+})
+
+$("#countdownModal").on("hidden.bs.modal", function() {
+    clearInterval(cdStartInt); 
+    onStandby = false;
+    cdStartBtn.text("Start");
+    cdDisplay.html("00 : 00 : 00");
+    $(".hourMessage").text("");
+    $(".minuteMessage").text("");
+    $(".secondMessage").text("");
+    cdHours.val("");
+    cdMinutes.val("");
+    cdSeconds.val("");
+    });
+
+    /* 
+    
+        FIX THESE THINGS...
+
+        - After invalid entry, timer needs to be reset otherwise new entry does nothing
+        - Pause feature might be nice
+        - Add motivational message box underneath. Use for intervals of 5 minutes and 15 second intervals for last 90secs
+    
+    */
+
+
 /*YOUTUBE SECTION*/
 const youtubeBtn = document.querySelector(".youtube-btn");
 const youtubeModal = document.querySelector("#youtubeModal");
@@ -318,7 +371,7 @@ let carouselArr = [];
 
 
 youtubeBtn.addEventListener("click", () => {
-    youtubeModal.style.display = "block";
+    $("#youtubeModal").modal("show");
 
     Object.values(muscleArray).forEach(item => {
         item.addEventListener("click", () => {

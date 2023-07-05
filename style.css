@@ -50,3 +50,10 @@ body {
     color: antiquewhite;
     border: 1px solid antiquewhite;
 }
+
+
+/* TO DO LIST*/
+.task-done {
+    text-decoration: line-through;
+    color: #800E13;
+}
