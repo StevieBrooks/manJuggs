@@ -8,75 +8,10 @@ window.addEventListener("load", () => {
 
     // $("#stopwatchModal").modal("show");
     // $("#countdownModal").modal("show");
-    $("#todoModal").modal("show");
+    // $("#todoModal").modal("show");
 
 
 })
-
-/* TO-DO SECTION */
-
-$(".todo-btn").click(function() {
-    $("#todoModal").modal("show");
-})
-
-const todoInput = $(".todo-input");
-const todoButton = $(".todo-button");
-const tdModalBody = $(".td-modal-body");
-const tdCard = $(".td-card");
-
-todoButton.click(function() {
-    tdModalBody.append(`
-    <div class="card td-card my-2">
-    <div class="card-body py-1">
-      <div class="row">
-        <div class="col col-8">
-          <p class="mb-0">${todoInput.val()}</p>
-        </div>
-        <div class="col col-4">
-          <button class="td-done">Done</button>
-          <button class="td-delete">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-    `);
-    todoInput.val("");
-})
-
-$("#todoModal").on("keydown", function(e) {
-    if(e.originalEvent.keyCode == 13 && todoInput.val().length > 0) {
-        tdModalBody.append(`
-    <div class="card td-card my-2">
-        <div class="card-body py-1">
-            <div class="row">
-                <div class="col col-8">
-                    <p class="mb-0">${todoInput.val()}</p>
-                </div>
-                <div class="col col-4">
-                    <button class="td-done">Done</button>
-                    <button class="td-delete">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    `);
-    todoInput.val("");
-    }
-    console.log(e.originalEvent.keyCode);
-})
-
-tdModalBody.on("click", ".td-done", function(e) {
-    console.log(e.target.parentElement.previousElementSibling.children[0]);
-    const task = e.target.parentElement.previousElementSibling.children[0];
-    
-    task.classList.toggle("task-done");
-})
-
-tdModalBody.on("click", ".td-delete", function(e) {
-    // console.log(e.target.parentElement);
-    e.target.parentElement.parentElement.parentElement.remove();
-})
-
 
 
 /* STOPWATCH SECTION */
@@ -357,6 +292,68 @@ $("#countdownModal").on("hidden.bs.modal", function() {
         - Add motivational message box underneath. Use for intervals of 5 minutes and 15 second intervals for last 90secs
     
     */
+
+
+/* TO-DO SECTION */
+
+$(".todo-btn").click(function() {
+    $("#todoModal").modal("show");
+})
+
+const todoInput = $(".todo-input");
+const todoButton = $(".todo-button");
+const tdModalBody = $(".td-modal-body");
+
+todoButton.click(function() {
+    tdModalBody.append(`
+    <div class="card td-card my-2">
+    <div class="card-body py-1">
+      <div class="row">
+        <div class="col col-8">
+          <p class="mb-0">${todoInput.val()}</p>
+        </div>
+        <div class="col col-4">
+          <button class="td-done">Done</button>
+          <button class="td-delete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    `);
+    todoInput.val("");
+})
+
+$("#todoModal").on("keydown", function(e) {
+    if(e.originalEvent.keyCode == 13 && todoInput.val().length > 0) {
+        tdModalBody.append(`
+    <div class="card td-card my-2">
+        <div class="card-body py-1">
+            <div class="row">
+                <div class="col col-8">
+                    <p class="mb-0">${todoInput.val()}</p>
+                </div>
+                <div class="col col-4">
+                    <button class="td-done">Done</button>
+                    <button class="td-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `);
+    todoInput.val("");
+    }
+})
+
+tdModalBody.on("click", ".td-done", function(e) {
+    console.log(e.target.parentElement.previousElementSibling.children[0]);
+    const task = e.target.parentElement.previousElementSibling.children[0];
+    
+    task.classList.toggle("task-done");
+})
+
+tdModalBody.on("click", ".td-delete", function(e) {
+    e.target.parentElement.parentElement.parentElement.remove();
+})
 
 
 /*YOUTUBE SECTION*/
