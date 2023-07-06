@@ -32,7 +32,7 @@
           <button type="button" class="btn btn-light mx-2 nav-btn todo-btn">To-Do</button>
           <button type="button" class="btn btn-light mx-2 nav-btn">BleepTest</button>
           <button type="button" class="btn btn-light mx-2 nav-btn">ShadBox</button>
-          <button type="button" class="btn btn-light mx-2 nav-btn">GymSearch</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn gym-btn">GymSearch</button>
           <button type="button" class="btn youtube-btn btn-light mx-2 nav-btn">YouTube</button>
         </div>
       </nav>
@@ -52,6 +52,7 @@
     </div>
   </div>
 
+  <!--USE IMAGES IN EACH MODAL TO REPRESENT FEATURE-->
 
   <!--STOPWATCH MODAL-->
   <div class="modal mt-5" id="stopwatchModal" tabindex="-1">
@@ -157,7 +158,24 @@
   </div>
 
 
+ <!--GYM SEARCH MODAL-->
 
+ <div class="modal mt-5" id="gymModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Gym Search</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body gym-modal-body">
+
+        <p>Search for the CLOSEST gym to you and hit it!</p>
+        <p id="demo"></p>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

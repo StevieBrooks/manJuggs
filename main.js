@@ -9,7 +9,56 @@ window.addEventListener("load", () => {
     // $("#stopwatchModal").modal("show");
     // $("#countdownModal").modal("show");
     // $("#todoModal").modal("show");
+    $("#gymModal").modal("show");
 
+})
+
+
+/* GYM SEARCH SECTION */
+
+let userLat = null;
+let userLong = null;
+// let showPosition = null;
+
+$(".gym-btn").click(function() {
+    $("#gymModal").modal("show");
+
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    }
+    getLocation();
+
+    function showPosition(position) {
+        userLat = position.coords.latitude;
+        userLong = position.coords.longitude;
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    /* need to figure out how to extract this data and use in ajax call. console log below aint working */
+    makeAjaxRequest(userLat, userLong);
+    }
+
+    function makeAjaxRequest(userLat, userLong) {
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: `https://local-business-data.p.rapidapi.com/search-in-area?query=gym&lat=${userLat}&lng=${userLong}&zoom=13&limit=500&language=en`,
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'cd323733eemsh2260acaef042b68p173ddajsn26dd1647e98f',
+                'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
+            }
+        };
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    }
 
 })
 
