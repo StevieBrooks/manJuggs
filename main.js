@@ -9,58 +9,49 @@ window.addEventListener("load", () => {
     // $("#stopwatchModal").modal("show");
     // $("#countdownModal").modal("show");
     // $("#todoModal").modal("show");
-    $("#gymModal").modal("show");
+    // $("#gymModal").modal("show");
+    $("#bleepModal").modal("show");
 
 })
 
 
-/* GYM SEARCH SECTION */
+/* BLEEP SECTION */
 
-let userLat = null;
-let userLong = null;
-// let showPosition = null;
+$(".bleep-btn").click(function() {
+    $("#bleepModal").modal("show");
+})
 
-$(".gym-btn").click(function() {
-    $("#gymModal").modal("show");
+const levelDetails = {
+    level1: {
+        shuttles: 7,
+        "time per shuttle (s)": 9,
+        "total level time (s)": 63,
+        "distance per level (m)": 140,
+        "cumulative distance (m)": 140
+    },
+    level2: {
+        shuttles: 8,
+        "time per shuttle (s)": 8,
+        "total level time (s)": 64,
+        "distance per level (m)": 160,
+        "cumulative distance (m)": 300
+    },
+    level3: {
+        shuttles: 8,
+        "time per shuttle (s)": 7.58,
+        "total level time (s)": 60.6,
+        "distance per level (m)": 160,
+        "cumulative distance (m)": 460
+    },
+}
 
-    var x = document.getElementById("demo");
-
-    function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-    }
-    getLocation();
-
-    function showPosition(position) {
-        userLat = position.coords.latitude;
-        userLong = position.coords.longitude;
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    /* need to figure out how to extract this data and use in ajax call. console log below aint working */
-    makeAjaxRequest(userLat, userLong);
-    }
-
-    function makeAjaxRequest(userLat, userLong) {
-        const settings = {
-            async: true,
-            crossDomain: true,
-            url: `https://local-business-data.p.rapidapi.com/search-in-area?query=gym&lat=${userLat}&lng=${userLong}&zoom=13&limit=500&language=en`,
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'cd323733eemsh2260acaef042b68p173ddajsn26dd1647e98f',
-                'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
-            }
-        };
+$(".bleep-start").click(function() {
+    setInterval(function() {
         
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-        });
-    }
-
+    }, 1000)
 })
+
+
 
 
 /* STOPWATCH SECTION */
@@ -402,6 +393,52 @@ tdModalBody.on("click", ".td-done", function(e) {
 
 tdModalBody.on("click", ".td-delete", function(e) {
     e.target.parentElement.parentElement.parentElement.remove();
+})
+
+
+/* GYM SEARCH SECTION */
+
+let userLat = null;
+let userLong = null;
+// let showPosition = null;
+
+$(".gym-btn").click(function() {
+    $("#gymModal").modal("show");
+
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    }
+    getLocation();
+
+    function showPosition(position) {
+        userLat = position.coords.latitude;
+        userLong = position.coords.longitude;
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    /* need to figure out how to extract this data and use in ajax call. console log below aint working */
+    makeAjaxRequest(userLat, userLong);
+    }
+
+    function makeAjaxRequest(userLat, userLong) {
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: `gymSearch.php`,
+            method: 'GET',
+        };
+        
+        $.ajax(settings).done(function (response) {
+            let gymResponse = JSON.parse(response);
+            console.log(gymResponse);
+        });
+    }
+
 })
 
 

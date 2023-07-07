@@ -30,7 +30,7 @@
           <button type="button" class="btn btn-light mx-2 nav-btn stopwatch-btn">Stopwatch</button>
           <button type="button" class="btn btn-light mx-2 nav-btn countdown-btn">Countdown</button>
           <button type="button" class="btn btn-light mx-2 nav-btn todo-btn">To-Do</button>
-          <button type="button" class="btn btn-light mx-2 nav-btn">BleepTest</button>
+          <button type="button" class="btn btn-light mx-2 nav-btn bleep-btn">BleepTest</button>
           <button type="button" class="btn btn-light mx-2 nav-btn">ShadBox</button>
           <button type="button" class="btn btn-light mx-2 nav-btn gym-btn">GymSearch</button>
           <button type="button" class="btn youtube-btn btn-light mx-2 nav-btn">YouTube</button>
@@ -151,6 +151,39 @@
           <input type="text" class="todo-input" placeholder="Type your task here...">
           <button class="todo-button">Add Task</button>
           <span class="inputMessage"></span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--BLEEP MODAL-->
+
+  <div class="modal mt-5" id="bleepModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Bleep Test</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bleep-modal-body">
+
+          <p>Are you ready for some real PAIN? You'll need 20 metres of running space. Just hit that start button and PUSH yourself.</p>
+
+          <button class="bleep-start">Bring the Pain!</button>
+          <button class="bleep-stop">No More!</button>
+
+          <div class="card">
+            <div class="card-header">
+              <h4 class="bleep-level"></h4>
+            </div>
+            <div class="card-body bleep-results">
+              <p class="bleep-distance"></p>
+              <p class="bleep-final-level"></p>
+              <p class="bleep-vo2"></p>
+              <a href="#" class="btn btn-primary">Post Results to Facebook</a>
+            </div>
+          </div>
 
         </div>
       </div>
