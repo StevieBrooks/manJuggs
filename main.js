@@ -45,11 +45,44 @@ const levelDetails = {
     },
 }
 
+let time = 0;
+let shuttleCount = 0;
+let levDeets = null;
+let bleepClock = null;
+let i = 0;
+
 $(".bleep-start").click(function() {
-    setInterval(function() {
-        
-    }, 1000)
+
+    levDeets = Object.entries(levelDetails);
+    console.log(levDeets);
+
+    console.log(shuttleCount);
+    
+    bleepClock = setInterval(function() {
+        time++;   
+        console.log(time);
+        if(time == levDeets[i][1]["time per shuttle (s)"]) {
+            console.log("hit");
+            time = 0;
+            shuttleCount++;
+            console.log(shuttleCount);
+            if(shuttleCount == levDeets[i][1].shuttles) {
+                i++;
+                shuttleCount = 0;
+                console.log(levDeets[i]);
+                $(".bleep-level").text(`Congrats, onto level ${i + 1}`);
+            }
+        }
+    }, 0100)
+
+    
+    
+
 })
+
+
+
+
 
 
 
