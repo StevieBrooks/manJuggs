@@ -43,41 +43,108 @@ const levelDetails = {
         "distance per level (m)": 160,
         "cumulative distance (m)": 460
     },
+    level4: {
+        shuttles: 9,
+        "time per shuttle (s)": 7.21,
+        "total level time (s)": 64.8,
+        "distance per level (m)": 180,
+        "cumulative distance (m)": 640
+    },
+    level5: {
+        shuttles: 9,
+        "time per shuttle (s)": 6.86,
+        "total level time (s)": 61.7,
+        "distance per level (m)": 180,
+        "cumulative distance (m)": 820
+    },
+    level6: {
+        shuttles: 10,
+        "time per shuttle (s)": 6.55,
+        "total level time (s)": 65.5,
+        "distance per level (m)": 200,
+        "cumulative distance (m)": 1020
+    },
+    level7: {
+        shuttles: 10,
+        "time per shuttle (s)": 6.26,
+        "total level time (s)": 62.6,
+        "distance per level (m)": 200,
+        "cumulative distance (m)": 1220
+    },
+    level8: {
+        shuttles: 11,
+        "time per shuttle (s)": 6,
+        "total level time (s)": 66,
+        "distance per level (m)": 220,
+        "cumulative distance (m)": 1440
+    },
+    level9: {
+        shuttles: 11,
+        "time per shuttle (s)": 5.76,
+        "total level time (s)": 63.4,
+        "distance per level (m)": 220,
+        "cumulative distance (m)": 1660
+    },
 }
 
 let time = 0;
+let bleepMils = 0;
+let bleepSecs = 0;
 let shuttleCount = 0;
 let levDeets = null;
 let bleepClock = null;
 let i = 0;
+let beep = new Audio('beep.wav');
+let beepNewLevel = new Audio('beepNewLevel.wav');
 
 $(".bleep-start").click(function() {
 
     levDeets = Object.entries(levelDetails);
-    console.log(levDeets);
+    console.log(levDeets[i]);
 
     console.log(shuttleCount);
+    clearInterval(bleepClock);
+
     
     bleepClock = setInterval(function() {
-        time++;   
-        console.log(time);
-        if(time == levDeets[i][1]["time per shuttle (s)"]) {
-            console.log("hit");
-            time = 0;
-            shuttleCount++;
-            console.log(shuttleCount);
-            if(shuttleCount == levDeets[i][1].shuttles) {
-                i++;
-                shuttleCount = 0;
-                console.log(levDeets[i]);
-                $(".bleep-level").text(`Congrats, onto level ${i + 1}`);
-            }
+        $(".bleep-level").text(`Level: ${levDeets[i][0].slice(5)} / Shuttle: ${shuttleCount}`)
+        bleepMils++;
+        if(bleepMils == 100) {
+            bleepMils = 0;
+            bleepSecs++;
         }
-    }, 0100)
+        time = `${bleepSecs}.${bleepMils}`;
+        console.log(time);
 
-    
-    
 
+
+        if(time == levDeets[i][1]["time per shuttle (s)"]) {
+            bleepSecs = 0;
+            bleepMils = 0;
+            shuttleCount++;
+            beep.play();
+            console.log(shuttleCount);
+        }
+
+        if(shuttleCount == levDeets[i][1].shuttles) {
+            i++;
+            shuttleCount = 0;
+            beepNewLevel.play();
+            console.log(levDeets[i]);
+            $(".bleep-mot").text(`Congrats, onto level ${i + 1}`);
+        }
+    }, 10)   
+
+})
+
+$(".bleep-stop").click(function() {
+    clearInterval(bleepClock);
+    if(i < 1) {
+        $(".bleep-distance").text(`Total Distance: ${shuttleCount * 20}`);
+    } else {
+        let longerDistance = (levDeets[i - 1][1]["cumulative distance (m)"]) + (shuttleCount * 20);
+        $(".bleep-distance").text(`Total Distance: ${longerDistance}`);
+    }
 })
 
 
