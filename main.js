@@ -21,6 +21,7 @@ $(".bleep-btn").click(function() {
     $("#bleepModal").modal("show");
 })
 
+/* only 9 levels for demo purposes */
 const levelDetails = {
     level1: {
         shuttles: 7,
@@ -98,6 +99,10 @@ let beep = new Audio('beep.wav');
 let beepNewLevel = new Audio('beepNewLevel.wav');
 
 $(".bleep-start").click(function() {
+    beepNewLevel.play();
+    $(".bleep-distance").css("display", "none");
+    $(".bleep-final-level").css("display", "none");
+    $(".bleep-level").css("display", "block");
 
     levDeets = Object.entries(levelDetails);
     console.log(levDeets[i]);
@@ -131,21 +136,43 @@ $(".bleep-start").click(function() {
             shuttleCount = 0;
             beepNewLevel.play();
             console.log(levDeets[i]);
+            $(".bleep-mot").css("display", "block");
             $(".bleep-mot").text(`Congrats, onto level ${i + 1}`);
+            setTimeout(removeMot, 2000);
         }
     }, 10)   
 
 })
 
 $(".bleep-stop").click(function() {
-    clearInterval(bleepClock);
+    $(".bleep-level").css("display", "none");
+    $(".bleep-distance").css("display", "block");
+    $(".bleep-final-level").css("display", "block");
+    setTimeout(resetTest, 1);
+   
+    
     if(i < 1) {
         $(".bleep-distance").text(`Total Distance: ${shuttleCount * 20}`);
     } else {
         let longerDistance = (levDeets[i - 1][1]["cumulative distance (m)"]) + (shuttleCount * 20);
         $(".bleep-distance").text(`Total Distance: ${longerDistance}`);
     }
+
+    $(".bleep-final-level").text(`Final Level: ${levDeets[i][0].slice(5)} / Shuttle: ${shuttleCount}`)
 })
+
+function resetTest() {
+    time = 0;
+    bleepMils = 0;
+    bleepSecs = 0;
+    shuttleCount = 0;
+    i = 0;
+    clearInterval(bleepClock);
+}
+
+function removeMot() {
+    $(".bleep-mot").css("display", "none");
+}
 
 
 
