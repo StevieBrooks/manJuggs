@@ -1,9 +1,16 @@
-body {
-    background: url("images/bg-pexels-victor-freitas-949131.jpg");
-    background-size: cover;
-    /*need media query for background*/
+
+
+#bgVideo {
+    position: fixed;
+}
+.navbar {
+    background-color: rgb(56, 4, 14, .5);
+    border-bottom: 1px solid antiquewhite;
 }
 
+.navbar-brand {
+    color: antiquewhite;
+}
 
 .nav-btn {
     background-color: #38040E;
