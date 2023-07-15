@@ -15,6 +15,17 @@ window.addEventListener("load", () => {
 
 })
 
+/* NAVIGATION */
+
+$(".navbar-brand").click(function() {
+    $("#welcomeModal").modal("show");
+})
+
+$(".burger-menu").click(function() {
+    $(".dropdown-items").toggle();
+    $(".burger-menu").classList.toggle("active");
+})
+
 
 /* STOPWATCH SECTION */
 
@@ -307,36 +318,40 @@ $(".todo-btn").click(function() {
 const todoInput = $(".todo-input");
 const todoButton = $(".todo-button");
 const tdModalBody = $(".td-modal-body");
+const taskList = $(".task-list");
 
 todoButton.click(function() {
-    tdModalBody.append(`
-    <div class="card td-card my-2">
-    <div class="card-body py-1">
-      <div class="row">
-        <div class="col col-8">
-          <p class="mb-0">${todoInput.val()}</p>
-        </div>
-        <div class="col col-4">
-          <button class="td-done">Done</button>
-          <button class="td-delete">Delete</button>
+    if(todoInput.val().length > 0) {
+
+        taskList.append(`
+        <div class="card td-card my-2">
+        <div class="card-body py-1">
+          <div class="row">
+            <div class="col">
+              <p class="mb-0">${todoInput.val()}</p>
+            </div>
+            <div class="col">
+              <button class="td-done">Done</button>
+              <button class="td-delete">Delete</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-    `);
+        `);
+    }
     todoInput.val("");
 })
 
 $("#todoModal").on("keydown", function(e) {
     if(e.originalEvent.keyCode == 13 && todoInput.val().length > 0) {
-        tdModalBody.append(`
+        taskList.append(`
     <div class="card td-card my-2">
         <div class="card-body py-1">
             <div class="row">
-                <div class="col col-8">
+                <div class="col">
                     <p class="mb-0">${todoInput.val()}</p>
                 </div>
-                <div class="col col-4">
+                <div class="col">
                     <button class="td-done">Done</button>
                     <button class="td-delete">Delete</button>
                 </div>
@@ -358,6 +373,10 @@ tdModalBody.on("click", ".td-done", function(e) {
 tdModalBody.on("click", ".td-delete", function(e) {
     e.target.parentElement.parentElement.parentElement.remove();
 })
+
+$("#todoModal").on("hidden.bs.modal", function() {
+    taskList.html("");
+    });
 /* end of todo list section */
 
 
@@ -519,6 +538,14 @@ function resetTest() {
 function removeMot() {
     $(".bleep-mot").css("display", "none");
 }
+
+$("#bleepModal").on("hidden.bs.modal", function() {
+    clearInterval(bleepClock);
+    $(".bleep-level").text("");
+    $(".bleep-mot").text("");
+    $(".bleep-final-level").text("");
+    $(".bleep-distance").text("");
+    });
 /* end of bleep test section */
 
 
