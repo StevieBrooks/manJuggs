@@ -1,14 +1,23 @@
-
+body {
+    height: 100vh;
+}
 
 #bgVideo {
     position: fixed;
 }
+
+/*NAVIGATION*/
+
 .navbar {
     background-color: rgb(56, 4, 14, .5);
     border-bottom: 1px solid antiquewhite;
 }
 
 .navbar-brand {
+    color: antiquewhite;
+}
+
+.navbar-brand:hover {
     color: antiquewhite;
 }
 
@@ -23,8 +32,65 @@
     color: antiquewhite;
 } 
 
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    height: 2.3rem;
+    width: 2.3rem;
+    border: 1px solid antiquewhite;
+    border-radius: 7px;
+    padding: 2px 0 2px;
+}
+
+.burger-menu:hover {
+    cursor: pointer;
+}
+
+.burger-menu .bar {
+    width: 75%;
+    height: 2px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+}
+
+.dropdown-items {
+    display: none;
+    color: antiquewhite;
+    list-style: none;
+    position: absolute;
+    top: 4rem;
+    left: -1rem;
+}
+
+@media (max-width: 600px) {
+    .nav-btn {
+        display: none;
+    }
+    .burger-menu {
+        display: flex;
+    }
+    .burger-menu.active .bar:nth-child(1) {
+        transform: rotate(45deg);
+    }
+    .burger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.active .bar:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+}
+
+/* MODALS GENERAL */
+
+.modal .btn-close {
+    background-color: antiquewhite;
+}
+
 .modal-content {
-    background-color: #38040E;
+    background-color: rgb(56, 4, 14, .5);
     color: antiquewhite;
     border: none;
     box-shadow: 0 0 3px antiquewhite;
@@ -59,8 +125,164 @@
 }
 
 
+
+/* STOPWATCH */
+
+#stopwatchModal .card-text {
+    text-align: center;
+}
+
+#stopwatchModal .stopwatchDisplay {
+    box-shadow: 0 0 3px antiquewhite;
+    text-align: center;
+    padding: 1rem;
+    background-color: #38040E;
+    font-size: 2rem;
+}
+
+#stopwatchModal .card-footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* COUNTDOWN */
+/* 
+#countdownModal .modal-body {
+    height: 200px;
+    overflow: scroll;
+}
+
+#countdownModal .modal-body::-webkit-scrollbar {
+    width: 10px;
+} */
+
+#countdownModal .countdown-display {
+    box-shadow: 0 0 3px antiquewhite;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #38040E;
+    font-size: 2rem;
+}
+
+#countdownModal .countdown-set {
+    box-shadow: 0 0 3px antiquewhite;
+    background-color: #38040E;
+}
+
+#countdownModal .countdown-set-header {
+    text-align: center;
+    padding: .5rem 0;
+    border-bottom: 1px solid antiquewhite;
+}
+
+#countdownModal h6 {
+    padding: 0;
+    margin: 0;
+}
+
+#countdownModal .countdown-set-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5rem 0;
+}
+
+#countdownModal input {
+    margin: .2rem 0;
+    background-color: antiquewhite;
+    border: 1px solid #250902;
+    border-radius: 5px;
+    padding-left: .5rem;
+    width: 50%;
+}
+
+#countdownModal .card-footer {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 450px) {
+    #countdownModal input {
+        width: 90%;
+    }
+}
+
+
 /* TO DO LIST*/
-.task-done {
+
+#todoModal input {
+    width: 69%;
+    margin: .5rem 0;
+    background-color: antiquewhite;
+    border: 1px solid #250902;
+    border-radius: 5px;
+    padding: .2rem .5rem;
+}
+
+#todoModal .todo-button {
+    width: 30%;
+    background-color: #38040E;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+    border-radius: 5px;
+    padding: .2rem .5rem;
+}
+
+#todoModal .todo-button:hover {
+    background-color: #800E13;
+}
+
+#todoModal .td-done, #todoModal .td-delete {
+    background-color: #38040E;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+    border-radius: 5px;
+    margin: .3rem;
+    position: relative;
+    left: 40%;
+}
+
+#todoModal .task-done {
     text-decoration: line-through;
     color: #800E13;
+}
+
+@media (max-width: 520px) {
+    #todoModal input {
+        width: 100%;
+    }
+    #todoModal .todo-button {
+        width: 50%;
+        transform: translate(50%, 0);
+    }
+    #todoModal .td-done, #todoModal .td-delete {
+        left: 30%;
+    }
+}
+
+@media (max-width: 460px) {
+    #todoModal .td-done, #todoModal .td-delete {
+        left: 4vw;
+    }
+}
+
+/* BLEEP TEST */
+
+#bleepModal .bleep-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#bleepModal .bleep-start, #bleepModal .bleep-stop {
+    background-color: #38040E;
+    color: antiquewhite;
+    border: 1px solid antiquewhite;
+    border-radius: 5px;
+    margin: 1rem .5rem;
+}
+
+#bleepModal .bleep-card {
+    text-align: center;
 }

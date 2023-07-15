@@ -39,8 +39,24 @@
           <!-- <button type="button" class="btn btn-light mx-2 nav-btn">ShadBox</button> -->
           <!-- <button type="button" class="btn btn-light mx-2 nav-btn gym-btn">GymSearch</button> -->
           <!-- <button type="button" class="btn youtube-btn btn-light mx-2 nav-btn">YouTube</button> -->
+          
+          <div class="burger-menu">
+            <div class="bar bar-1"></div>
+            <div class="bar bar-2"></div>
+            <div class="bar bar-3"></div>
+          </div>
+
+          <ul class="dropdown-items">
+            <li class="dropdown-item">Stopwatch</li>
+            <li class="dropdown-item">Countdown</li>
+            <li class="dropdown-item">To Do</li>
+            <li class="dropdown-item">Bleep Test</li>
+          </ul>
         </div>
     </nav>
+
+
+
     
 
   <!--WELCOME MODAL-->
@@ -72,7 +88,7 @@
 
           <div class="card mb-3">
             <div class="card-header">
-              <p class="card-text">Hit the START button and excel yourself!</p>
+              <p class="card-text">Hit that START button and excel yourself!</p>
             </div>
             <div class="card-body">
               <div class="stopwatchDisplay">
@@ -114,16 +130,18 @@
 
               <div class="countdown-set">
                 
-                <h6>Set Countdown</h6>
+                <div class="countdown-set-header">
+                  <h6>Set Countdown</h6>
+                </div>
 
-                <label for="hours">Hours: <input type="number" class="cd-hours"></label>
-                <span class="hourMessage"></span>
-
-                <label for="minutes">Minutes: <input type="number" class="cd-minutes"></label>
-                <span class="minuteMessage"></span>
-
-                <label for="seconds">Seconds: <input type="number" class="cd-seconds"></label>
-                <span class="secondMessage"></span>
+                <div class="countdown-set-body">
+                  <input type="number" class="cd-hours" placeholder="Hours">
+                  <span class="hourMessage"></span>
+                  <input type="number" class="cd-minutes" placeholder="Minutes">
+                  <span class="minuteMessage"></span>
+                  <input type="number" class="cd-seconds" placeholder="Seconds">
+                  <span class="secondMessage"></span>
+                </div>
                 
               </div>
             </div>
@@ -158,6 +176,8 @@
           <button class="todo-button">Add Task</button>
           <span class="inputMessage"></span>
 
+          <div class="task-list"></div>
+
         </div>
       </div>
     </div>
@@ -176,13 +196,15 @@
 
           <p>Are you ready for some real PAIN? You'll need 20 metres of running space. Just hit that start button and PUSH yourself.</p>
 
-          <button class="bleep-start">Bring the Pain!</button>
-          <button class="bleep-stop">No More!</button>
+          <div class="bleep-buttons">
+            <button class="bleep-start">Bring the Pain!</button>
+            <button class="bleep-stop">No More!</button>
+          </div>
 
           <audio src="beep.wav"></audio>
           <audio src="beepNewLevel.wav"></audio>
 
-          <div class="card">
+          <div class="card bleep-card">
             <div class="card-body bleep-results">
               <p class="bleep-level"></p>
               <h4 class="bleep-mot"></h4>
