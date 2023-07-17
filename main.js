@@ -327,10 +327,10 @@ todoButton.click(function() {
         <div class="card td-card my-2">
         <div class="card-body py-1">
           <div class="row">
-            <div class="col">
+            <div class="col col-12">
               <p class="mb-0">${todoInput.val()}</p>
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-center">
               <button class="td-done">Done</button>
               <button class="td-delete">Delete</button>
             </div>
@@ -348,10 +348,10 @@ $("#todoModal").on("keydown", function(e) {
     <div class="card td-card my-2">
         <div class="card-body py-1">
             <div class="row">
-                <div class="col">
+                <div class="col col-12">
                     <p class="mb-0">${todoInput.val()}</p>
                 </div>
-                <div class="col">
+                <div class="col d-flex justify-content-center">
                     <button class="td-done">Done</button>
                     <button class="td-delete">Delete</button>
                 </div>
@@ -366,13 +366,15 @@ $("#todoModal").on("keydown", function(e) {
 tdModalBody.on("click", ".td-done", function(e) {
     console.log(e.target.parentElement.previousElementSibling.children[0]);
     const task = e.target.parentElement.previousElementSibling.children[0];
+    $(task).css("transition", "1s ease");
     
     task.classList.toggle("task-done");
 })
 
 tdModalBody.on("click", ".td-delete", function(e) {
     console.log(e.target.parentElement.parentElement.parentElement);
-    e.target.parentElement.parentElement.parentElement.parentElement.remove();
+    const taskCard = e.target.parentElement.parentElement.parentElement.parentElement;
+    $(taskCard).slideUp(0o500);
 })
 
 $("#todoModal").on("hidden.bs.modal", function() {

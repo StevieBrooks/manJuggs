@@ -253,8 +253,6 @@ body {
     border: 1px solid antiquewhite;
     border-radius: 5px;
     margin: .3rem;
-    position: relative;
-    left: 40%;
 }
 
 #todoModal .task-done {
@@ -270,16 +268,9 @@ body {
         width: 50%;
         transform: translate(50%, 0);
     }
-    #todoModal .td-done, #todoModal .td-delete {
-        left: 30%;
-    }
 }
 
-@media (max-width: 460px) {
-    #todoModal .td-done, #todoModal .td-delete {
-        left: 4vw;
-    }
-}
+
 
 /* BLEEP TEST */
 
