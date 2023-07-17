@@ -371,7 +371,8 @@ tdModalBody.on("click", ".td-done", function(e) {
 })
 
 tdModalBody.on("click", ".td-delete", function(e) {
-    e.target.parentElement.parentElement.parentElement.remove();
+    console.log(e.target.parentElement.parentElement.parentElement);
+    e.target.parentElement.parentElement.parentElement.parentElement.remove();
 })
 
 $("#todoModal").on("hidden.bs.modal", function() {
