@@ -2,9 +2,9 @@
 
 window.addEventListener("load", () => {
 
-    // setTimeout(function() {
-    //     $("#welcomeModal").modal("show");
-    // }, 2000)
+    setTimeout(function() {
+        $("#welcomeModal").modal("show");
+    }, 2000)
 
     // $("#stopwatchModal").modal("show");
     // $("#countdownModal").modal("show");
