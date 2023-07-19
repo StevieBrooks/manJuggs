@@ -21,9 +21,19 @@ $(".navbar-brand").click(function() {
     $("#welcomeModal").modal("show");
 })
 
+const dropdownItems = document.querySelector(".dropdown-items");
+const bar1 = document.querySelector('.bar-1');
+const bar2 = document.querySelector('.bar-2');
+const bar3 = document.querySelector('.bar-3');
 $(".burger-menu").click(function() {
-    $(".dropdown-items").toggle();
-    $(".burger-menu").classList.toggle("active");
+    if(dropdownItems.style.display === 'block') {
+        dropdownItems.style.display = 'none';
+    } else {
+        dropdownItems.style.display = 'block';
+    }
+    bar1.classList.toggle('active');
+    bar2.classList.toggle('active');
+    bar3.classList.toggle('active');
 })
 
 
@@ -372,7 +382,6 @@ tdModalBody.on("click", ".td-done", function(e) {
 })
 
 tdModalBody.on("click", ".td-delete", function(e) {
-    console.log(e.target.parentElement.parentElement.parentElement);
     const taskCard = e.target.parentElement.parentElement.parentElement.parentElement;
     $(taskCard).slideUp(0o500);
 })
@@ -508,7 +517,7 @@ $(".bleep-start").click(function() {
             $(".bleep-mot").text(`Congrats, onto level ${i + 1}`);
             setTimeout(removeMot, 2000);
         }
-    }, 10)   
+    }, 0o01)   
 
 })
 
