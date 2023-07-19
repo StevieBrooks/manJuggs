@@ -25,6 +25,7 @@ const dropdownItems = document.querySelector(".dropdown-items");
 const bar1 = document.querySelector('.bar-1');
 const bar2 = document.querySelector('.bar-2');
 const bar3 = document.querySelector('.bar-3');
+
 $(".burger-menu").click(function() {
     if(dropdownItems.style.display === 'block') {
         dropdownItems.style.display = 'none';
@@ -34,6 +35,28 @@ $(".burger-menu").click(function() {
     bar1.classList.toggle('active');
     bar2.classList.toggle('active');
     bar3.classList.toggle('active');
+})
+
+dropdownItems.addEventListener("click", (e) => {
+    const choice = e.target.innerHTML;
+    dropdownItems.style.display = 'none';
+    bar1.classList.toggle('active');
+    bar2.classList.toggle('active');
+    bar3.classList.toggle('active');
+    switch(choice) {
+        case "Stopwatch":
+            $("#stopwatchModal").modal("show");
+            break;
+        case "Countdown":
+            $("#countdownModal").modal("show");
+            break;
+        case "To Do":
+            $("#todoModal").modal("show");
+            break;
+        case "Bleep Test":
+            $("#bleepModal").modal("show");
+            break;
+    }
 })
 
 

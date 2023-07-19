@@ -76,7 +76,6 @@ body {
     list-style: none;
     position: absolute;
     top: 56px;
-    /* z-index: -1; */
     margin-left: -.8rem;
     border-bottom: 1px solid antiquewhite;
     padding: 0;
