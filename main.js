@@ -17,16 +17,23 @@ window.addEventListener("load", () => {
 
 /* NAVIGATION */
 
-$(".navbar-brand").click(function() {
-    $("#welcomeModal").modal("show");
-})
+/* need to sort outdropdown menu. doesn't vanish if burger clicked and then screen widened */
 
-const dropdownItems = document.querySelector(".dropdown-items");
 const bar1 = document.querySelector('.bar-1');
 const bar2 = document.querySelector('.bar-2');
 const bar3 = document.querySelector('.bar-3');
+const dropdownItems = document.querySelector(".dropdown-items");
+// const dropdownItems = $(".dropdown-items");
+
+$(".navbar-brand").click(function() {
+    $("#welcomeModal").modal("show");
+    dropdownItems.style.display = 'none';
+})
 
 $(".burger-menu").click(function() {
+
+    console.log(dropdownItems);
+
     if(dropdownItems.style.display === 'block') {
         dropdownItems.style.display = 'none';
     } else {
@@ -58,6 +65,34 @@ dropdownItems.addEventListener("click", (e) => {
             break;
     }
 })
+
+/* WELCOME SECTION */
+
+const techno = "Max Ruby - Fear Of The Dark.mp3";
+const metal = "Slipknot - Wait and Bleed.mp3";
+const DandB = "High contrast - Return Of Forever.mp3";
+
+const musicPlayer = $(".music-player");
+
+$(".music-select").click(function(e) {
+    const choice = e.target.className;
+    console.log(choice);
+    
+    switch(choice) {
+        case "dropdown-item techno":
+            musicPlayer.attr("src", techno);
+            break;
+        case "dropdown-item metal":
+            musicPlayer.attr("src", metal);
+            break;
+        case "dropdown-item dandb":
+            musicPlayer.attr("src", DandB);
+            break;
+    }
+    
+})
+
+
 
 
 /* STOPWATCH SECTION */
