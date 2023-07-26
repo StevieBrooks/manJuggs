@@ -76,7 +76,6 @@ const musicPlayer = $(".music-player");
 
 $(".music-select").click(function(e) {
     const choice = e.target.className;
-    console.log(choice);
     
     switch(choice) {
         case "dropdown-item techno":
@@ -444,9 +443,6 @@ tdModalBody.on("click", ".td-delete", function(e) {
     $(taskCard).slideUp(0o500);
 })
 
-$("#todoModal").on("hidden.bs.modal", function() {
-    taskList.html("");
-    });
 /* end of todo list section */
 
 
