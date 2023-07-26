@@ -571,7 +571,7 @@ $(".bleep-start").click(function() {
             $(".bleep-mot").text(`Congrats, onto level ${i + 1}`);
             setTimeout(removeMot, 2000);
         }
-    }, 0o01)   
+    }, 10)   
 
 })
 
@@ -611,6 +611,7 @@ $("#bleepModal").on("hidden.bs.modal", function() {
     $(".bleep-mot").text("");
     $(".bleep-final-level").text("");
     $(".bleep-distance").text("");
+    resetTest();
     });
 /* end of bleep test section */
 
