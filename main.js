@@ -6,24 +6,16 @@ window.addEventListener("load", () => {
         $("#welcomeModal").modal("show");
     }, 2000)
 
-    // $("#stopwatchModal").modal("show");
-    // $("#countdownModal").modal("show");
-    // $("#todoModal").modal("show");
-    // $("#gymModal").modal("show");
-    // $("#bleepModal").modal("show");
-    // $("#youtubeModal").modal("show");
 
 })
 
 /* NAVIGATION */
 
-/* need to sort outdropdown menu. doesn't vanish if burger clicked and then screen widened */
 
 const bar1 = document.querySelector('.bar-1');
 const bar2 = document.querySelector('.bar-2');
 const bar3 = document.querySelector('.bar-3');
 const dropdownItems = document.querySelector(".dropdown-items");
-// const dropdownItems = $(".dropdown-items");
 
 $(".navbar-brand").click(function() {
     $("#welcomeModal").modal("show");
