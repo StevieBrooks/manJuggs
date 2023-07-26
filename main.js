@@ -68,9 +68,9 @@ dropdownItems.addEventListener("click", (e) => {
 
 /* WELCOME SECTION */
 
-const techno = "Max Ruby - Fear Of The Dark.mp3";
-const metal = "Slipknot - Wait and Bleed.mp3";
-const DandB = "High contrast - Return Of Forever.mp3";
+const techno = new Audio("Max Ruby - Fear Of The Dark.mp3");
+const metal = new Audio("Slipknot - Wait and Bleed.mp3");
+const DandB = new Audio("High contrast - Return Of Forever.mp3");
 
 const musicPlayer = $(".music-player");
 
@@ -80,17 +80,40 @@ $(".music-select").click(function(e) {
     switch(choice) {
         case "dropdown-item techno":
             musicPlayer.attr("src", techno);
+            techno.play();
+            metal.pause();
+            metal.currentTime = 0;
+            DandB.pause();
+            DandB.currentTime = 0;
             break;
         case "dropdown-item metal":
             musicPlayer.attr("src", metal);
+            metal.play();
+            techno.pause();
+            techno.currentTime = 0;
+            DandB.pause();
+            DandB.currentTime = 0;
             break;
         case "dropdown-item dandb":
             musicPlayer.attr("src", DandB);
+            DandB.play();
+            techno.pause();
+            techno.currentTime = 0;
+            metal.pause();
+            metal.currentTime = 0;
             break;
     }
     
 })
 
+$(".music-stop-btn").click(function() {
+    techno.pause();
+    techno.currentTime = 0;
+    metal.pause();
+    metal.currentTime = 0;
+    DandB.pause();
+    DandB.currentTime = 0;
+})
 
 
 

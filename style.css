@@ -147,6 +147,47 @@ body {
     border: 1px solid antiquewhite;
 }
 
+/* WELCOME */
+
+#welcomeModal .modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#welcomeModal .dropdown {
+    margin: .5rem auto;
+}
+
+#welcomeModal .dropdown-toggle {
+    background-color: #38040E;
+    margin-right: .5rem;
+}
+
+#welcomeModal .dropdown-toggle:hover {
+    background-color: #800E13;
+}
+
+#welcomeModal .dropdown-menu {
+    background-color: #38040E;
+    border: 1px solid antiquewhite;
+    padding: 0;
+}
+
+#welcomeModal .dropdown-item {
+    color: antiquewhite;
+}
+
+#welcomeModal .techno {
+    border-radius: 6px 6px 0 0;
+}
+
+#welcomeModal .dandb {
+    border-radius: 0 0 6px 6px;
+}
+
+#welcomeModal .music-player {
+    display: none;
+}
 
 
 /* STOPWATCH */
