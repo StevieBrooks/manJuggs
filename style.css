@@ -209,6 +209,12 @@ body {
     justify-content: center;
 }
 
+@media (max-width: 400px) {
+    #stopwatchModal .stopwatchDisplay {
+        font-size: 1.3rem;
+    }
+}
+
 
 /* COUNTDOWN */
 
