@@ -95,7 +95,6 @@ body {
     background-color: #800E13;
 }
 
-
 @media (max-width: 600px) {
     .nav-btn {
         display: none;
@@ -287,6 +286,9 @@ body {
 @media (max-width: 450px) {
     #countdownModal input {
         width: 90%;
+    }
+    #countdownModal .countdown-display {
+        font-size: 1.5rem;
     }
 }
 
