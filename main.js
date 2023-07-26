@@ -24,8 +24,6 @@ $(".navbar-brand").click(function() {
 
 $(".burger-menu").click(function() {
 
-    console.log(dropdownItems);
-
     if(dropdownItems.style.display === 'block') {
         dropdownItems.style.display = 'none';
     } else {
@@ -139,8 +137,6 @@ startBtn.click(function() {
 })
 
 function startFunc1() {
-
-    console.log('function1');
     
     startBtn.text("Pause");
         
@@ -167,7 +163,6 @@ function startFunc1() {
 }
 
 function startFunc2() {
-    console.log('function2');
     startBtn.text("Start");
     clearInterval(startInt);
 }
@@ -438,7 +433,7 @@ $("#todoModal").on("keydown", function(e) {
 })
 
 tdModalBody.on("click", ".td-done", function(e) {
-    console.log(e.target.parentElement.previousElementSibling.children[0]);
+
     const task = e.target.parentElement.previousElementSibling.children[0];
     $(task).css("transition", "1s ease");
     
@@ -543,9 +538,7 @@ $(".bleep-start").click(function() {
     $(".bleep-level").css("display", "block");
 
     levDeets = Object.entries(levelDetails);
-    console.log(levDeets[i]);
 
-    console.log(shuttleCount);
     clearInterval(bleepClock);
 
     
@@ -557,23 +550,18 @@ $(".bleep-start").click(function() {
             bleepSecs++;
         }
         time = `${bleepSecs}.${bleepMils}`;
-        console.log(time);
-
-
 
         if(time == levDeets[i][1]["time per shuttle (s)"]) {
             bleepSecs = 0;
             bleepMils = 0;
             shuttleCount++;
             beep.play();
-            console.log(shuttleCount);
         }
 
         if(shuttleCount == levDeets[i][1].shuttles) {
             i++;
             shuttleCount = 0;
             beepNewLevel.play();
-            console.log(levDeets[i]);
             $(".bleep-mot").css("display", "block");
             $(".bleep-mot").text(`Congrats, onto level ${i + 1}`);
             setTimeout(removeMot, 2000);
