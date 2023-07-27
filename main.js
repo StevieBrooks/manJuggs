@@ -11,6 +11,7 @@ window.addEventListener("load", () => {
 
 /* NAVIGATION */
 
+let winW = null;
 
 const bar1 = document.querySelector('.bar-1');
 const bar2 = document.querySelector('.bar-2');
@@ -55,6 +56,30 @@ dropdownItems.addEventListener("click", (e) => {
             break;
     }
 })
+
+$(window).resize(function(){
+    winW = $(window).width();
+    if(winW <= 600){
+
+    } else {
+        dropdownItems.style.display = "none";
+        bar1.classList.remove('active');
+        bar2.classList.remove('active');
+        bar3.classList.remove('active');
+    }
+});
+
+$(document).click(function(e) {
+    if(e.target.localName === "body") {
+        dropdownItems.style.display = "none";
+        bar1.classList.remove('active');
+        bar2.classList.remove('active');
+        bar3.classList.remove('active');
+    } else {
+        
+    }
+}) 
+
 
 /* WELCOME SECTION */
 
@@ -513,7 +538,7 @@ const levelDetails = {
         "cumulative distance (m)": 1440
     },
     level9: {
-        shuttles: 11,
+        shuttles: 12,
         "time per shuttle (s)": 5.76,
         "total level time (s)": 63.4,
         "distance per level (m)": 220,
@@ -538,12 +563,15 @@ $(".bleep-start").click(function() {
     $(".bleep-level").css("display", "block");
 
     levDeets = Object.entries(levelDetails);
+    console.log(levDeets[i]);
 
     clearInterval(bleepClock);
+
 
     
     bleepClock = setInterval(function() {
         $(".bleep-level").text(`Level: ${levDeets[i][0].slice(5)} / Shuttle: ${shuttleCount}`)
+        console.log(time);
         bleepMils++;
         if(bleepMils == 100) {
             bleepMils = 0;
@@ -566,11 +594,17 @@ $(".bleep-start").click(function() {
             $(".bleep-mot").text(`Congrats, onto level ${i + 1}`);
             setTimeout(removeMot, 2000);
         }
-    }, 10)   
+        
+            if(levDeets[i][0] == "level9" && shuttleCount == 11) {
+                resetTest();
+                $(".bleep-mot").text("Congratulations, soldier!!!");
+                setTimeout(removeMot, 5000);
+            }
+    }, 10) 
 
 })
 
-$(".bleep-stop").click(function() {
+$(".bleep-stop").click(function () {
     $(".bleep-level").css("display", "none");
     $(".bleep-distance").css("display", "block");
     $(".bleep-final-level").css("display", "block");
@@ -599,6 +633,7 @@ function resetTest() {
 function removeMot() {
     $(".bleep-mot").css("display", "none");
 }
+
 
 $("#bleepModal").on("hidden.bs.modal", function() {
     clearInterval(bleepClock);
